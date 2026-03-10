@@ -10,6 +10,18 @@
 
 ---
 
+## 中文简介
+
+- 定位：面向 Abaqus 的 LLM 自动化代理，输入自然语言即可生成规范化 spec，自动跑完建模、求解与 KPI 报告。
+- 效果亮点：语法预检先行、失败快速止损；run_id=sha256(spec) 确保可重现；AST 静态防护+结构化错误码提升安全性；内置基准案例覆盖静力、模态、显式冲击等常见工况。
+- 部署/使用：
+  1. `pip install abaqus-agent` 安装核心；如需 MCP/LLM 支持用 `pip install abaqus-agent[mcp]` 或 `pip install abaqus-agent[all]`。
+  2. Docker 一键启动：`docker compose up -d`，API 默认 http://localhost:8000，MCP Bridge 默认 http://localhost:8001。
+  3. 源码模式：`git clone ... && pip install -e ".[dev,mcp]"`，启动 API 用 `abaqus-agent` 或 `uvicorn server:app --reload --port 8000`。
+  4. 体验完整流程：执行 `python agent/orchestrator.py cases/cantilever/spec.yaml cases/cantilever/expected.json cases/cantilever/runner.json` 跑通悬臂梁示例；或通过 `python agent/llm_planner.py "..."` 从自然语言生成 spec。
+
+---
+
 ## Installation
 
 ```bash
